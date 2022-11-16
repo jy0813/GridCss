@@ -1,0 +1,257 @@
+@charset "utf-8";
+
+/*
+  File Definition: Grid Style
+  Version: 1.1.0
+  Writer: JJY
+ */
+
+/*
+ * BASIC (>639px) ---------------------------------------------------
+ * fixture---------------------xs
+
+ * TABLET, MOBILE (>640px) ------------------------------------------
+ * fixture---------------------sm
+
+ * TABLET, MOBILE (>768px) ------------------------------------------
+ * fixture---------------------md
+
+ * TABLET (>1024px) -------------------------------------------------
+ * fixture---------------------lg
+
+ * TABLET, IPADS (>1280px) ------------------------------------------
+ * fixture---------------------xl
+
+ * LAPTOPS, DESKTOP (>1536px) ---------------------------------------
+ * fixture---------------------xxl
+*/
+
+//breakpoint 설정
+$sm-breakpoint: 640px;
+$md-breakpoint: 768px;
+$lg-breakpoint: 1024px;
+$xl-breakpoint: 1280px;
+$xxl-breakpoint: 1536px;
+
+//columns 설정, 12 Column System
+$columns: 12;
+
+//gap 설정, 값: 100 = 10rem
+$gap: 100;
+
+//prefix 설정
+$prefix-list: webkit, moz, ms, o;
+@mixin prefix($property, $value) {
+  @each $prefix in $prefix-list {
+    -#{$prefix}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+
+.grid {
+  display: grid;
+
+  &.col-none {
+    @include prefix(grid-template-columns, none);
+  }
+  &.row-none {
+    @include prefix(grid-template-rows, none);
+  }
+  &.flow-col {
+    @include prefix(grid-auto-flow, column);
+  }
+  &.flow-row {
+    @include prefix(grid-auto-flow, row);
+  }
+  &.flow-col-dense {
+    @include prefix(grid-auto-flow, column dense);
+  }
+  &.flow-row-dense {
+    @include prefix(grid-auto-flow, row dense);
+  }
+}
+
+.col-span-full {
+  -webkit-grid-column: 1 / -1;
+  -moz-grid-column: 1 / -1;
+  -ms-grid-column: 1 / -1;
+  -o-grid-column: 1/ -1;
+  grid-column: 1 / -1;
+}
+
+.row-span-full {
+  -webkit-grid-row: 1 / -1;
+  -moz-grid-row: 1 / -1;
+  -ms-grid-row: 1 / -1;
+  -o-grid-row: 1/ -1;
+  grid-row: 1 / -1;
+}
+
+@for $index from 1 through $columns {
+  .col-xs-#{$index} {
+    @include prefix(grid-template-columns, repeat($index, minmax(0, 1fr)));
+  }
+  .row-xs-#{$index} {
+    @include prefix(grid-template-rows, repeat($index, minmax(0, 1fr)));
+  }
+  .col-xs-span-#{$index} {
+    @include prefix(grid-column, span $index/span $index);
+  }
+  .row-xs-span-#{$index} {
+    @include prefix(grid-row, span $index/span $index);
+  }
+}
+
+@for $index from 1 through $gap {
+  .gap-xs-#{$index} {
+    @include prefix(grid-gap, $index * 0.1 + rem);
+  }
+  .gap-xs-row-#{$index} {
+    @include prefix(grid-row-gap, $index * 0.1 + rem);
+  }
+  .gap-xs-col-#{$index} {
+    @include prefix(grid-column-gap, $index * 0.1 + rem);
+  }
+}
+
+@media screen and (min-width: $sm-breakpoint) {
+  @for $index from 1 through $columns {
+    .col-sm-#{$index} {
+      @include prefix(grid-template-columns, repeat($index, minmax(0, 1fr)));
+    }
+    .row-sm-#{$index} {
+      @include prefix(grid-template-rows, repeat($index, minmax(0, 1fr)));
+    }
+    .col-sm-span-#{$index} {
+      @include prefix(grid-column, span $index/span $index);
+    }
+    .row-sm-span-#{$index} {
+      @include prefix(grid-row, span $index/span $index);
+    }
+  }
+
+  @for $index from 1 through $gap {
+    .gap-sm-#{$index} {
+      @include prefix(grid-gap, $index * 0.1 + rem);
+    }
+    .gap-sm-row-#{$index} {
+      @include prefix(grid-row-gap, $index * 0.1 + rem);
+    }
+    .gap-sm-col-#{$index} {
+      @include prefix(grid-column-gap, $index * 0.1 + rem);
+    }
+  }
+}
+
+@media screen and(min-width: $md-breakpoint) {
+  @for $index from 1 through $columns {
+    .col-md-#{$index} {
+      @include prefix(grid-template-columns, repeat($index, minmax(0, 1fr)));
+    }
+    .row-md-#{$index} {
+      @include prefix(grid-template-rows, repeat($index, minmax(0, 1fr)));
+    }
+    .col-md-span-#{$index} {
+      @include prefix(grid-column, span $index/span $index);
+    }
+    .row-md-span-#{$index} {
+      @include prefix(grid-row, span $index/span $index);
+    }
+  }
+
+  @for $index from 1 through $gap {
+    .gap-md-#{$index} {
+      @include prefix(grid-gap, $index * 0.1 + rem);
+    }
+    .gap-md-row-#{$index} {
+      @include prefix(grid-row-gap, $index * 0.1 + rem);
+    }
+    .gap-md-col-#{$index} {
+      @include prefix(grid-column-gap, $index * 0.1 + rem);
+    }
+  }
+}
+@media screen and(min-width: $lg-breakpoint) {
+  @for $index from 1 through $columns {
+    .col-lg-#{$index} {
+      @include prefix(grid-template-columns, repeat($index, minmax(0, 1fr)));
+    }
+    .row-lg-#{$index} {
+      @include prefix(grid-template-rows, repeat($index, minmax(0, 1fr)));
+    }
+    .col-lg-span-#{$index} {
+      @include prefix(grid-column, span $index/span $index);
+    }
+    .row-lg-span-#{$index} {
+      @include prefix(grid-row, span $index/span $index);
+    }
+  }
+
+  @for $index from 1 through $gap {
+    .gap-lg-#{$index} {
+      @include prefix(grid-gap, $index * 0.1 + rem);
+    }
+    .gap-lg-row-#{$index} {
+      @include prefix(grid-row-gap, $index * 0.1 + rem);
+    }
+    .gap-lg-col-#{$index} {
+      @include prefix(grid-column-gap, $index * 0.1 + rem);
+    }
+  }
+}
+@media screen and(min-width: $xl-breakpoint) {
+  @for $index from 1 through $columns {
+    .col-xl-#{$index} {
+      @include prefix(grid-template-columns, repeat($index, minmax(0, 1fr)));
+    }
+    .row-xl-#{$index} {
+      @include prefix(grid-template-rows, repeat($index, minmax(0, 1fr)));
+    }
+    .col-xl-span-#{$index} {
+      @include prefix(grid-column, span $index/span $index);
+    }
+    .row-xl-span-#{$index} {
+      @include prefix(grid-row, span $index/span $index);
+    }
+  }
+
+  @for $index from 1 through $gap {
+    .gap-xl-#{$index} {
+      @include prefix(grid-gap, $index * 0.1 + rem);
+    }
+    .gap-xl-row-#{$index} {
+      @include prefix(grid-row-gap, $index * 0.1 + rem);
+    }
+    .gap-xl-col-#{$index} {
+      @include prefix(grid-column-gap, $index * 0.1 + rem);
+    }
+  }
+}
+@media screen and(min-width: $xxl-breakpoint) {
+  @for $index from 1 through $columns {
+    .col-xxl-#{$index} {
+      @include prefix(grid-template-columns, repeat($index, minmax(0, 1fr)));
+    }
+    .row-xxl-#{$index} {
+      @include prefix(grid-template-rows, repeat($index, minmax(0, 1fr)));
+    }
+    .col-xxl-span-#{$index} {
+      @include prefix(grid-column, span $index/span $index);
+    }
+    .row-xxl-span-#{$index} {
+      @include prefix(grid-row, span $index/span $index);
+    }
+  }
+
+  @for $index from 1 through $gap {
+    .gap-xxl-#{$index} {
+      @include prefix(grid-gap, $index * 0.1 + rem);
+    }
+    .gap-xxl-row-#{$index} {
+      @include prefix(grid-row-gap, $index * 0.1 + rem);
+    }
+    .gap-xxl-col-#{$index} {
+      @include prefix(grid-column-gap, $index * 0.1 + rem);
+    }
+  }
+}
